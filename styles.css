@@ -34,6 +34,10 @@ body {
     gap: 18px;
     align-items: center
 }
+.nav-main a:hover {
+    color: #1976d2
+
+}
 
 .nav-main a {
     color: #333;
@@ -428,3 +432,4 @@ footer p {
   color: #aaa;
   font-size: 14px;
 }
+
