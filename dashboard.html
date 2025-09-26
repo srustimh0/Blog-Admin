@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="header-bar">
+      <div class="logo">
+        <img src="logo.png" alt="logo" />
+      </div>
+      <nav class="nav-main">
+        <ul>
+          <li><a href="index.html">Main Site</a></li>
+          <li><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="main-wrap">
+      <aside class="sidebar">
+        <ul>
+          <li>
+            <a
+              href="#"
+              id="sideDashboard"
+              class="active"
+              onclick="showView('dashboard')"
+              >Admin Dashboard [TIMEKIDS]</a
+            >
+          </li>
+          <li>
+            <a href="#" id="sideMail" onclick="showView('mail')"
+              >Mailcontacts</a
+            >
+          </li>
+          <li>
+            <a href="#" id="sideAdmission" onclick="showView('admission')"
+              >Admissioncontacts</a
+            >
+          </li>
+          <li><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+      </aside>
+      <section class="content">
+        <div id="viewDashboard">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <h2>Blogs</h2>
+            <button class="btn add-green" id="addBlogBtn">Add blog</button>
+          </div>
+          <div class="table-wrap" style="margin-top: 12px">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>blogimage</th>
+                  <th>Title</th>
+                  <th>Short</th>
+                  <th>Content</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="blogTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="viewMail" style="display: none">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <h2>Mailcontacts</h2>
+            <button class="btn" id="addMailBtn">Add Mail</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Message</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="mailTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="viewAdmission" style="display: none">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <h2>Admissioncontacts</h2>
+            <button class="btn" id="addAdmissionBtn">Add Admission</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Class</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admissionTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div id="modal" class="modal">
+      <div class="box">
+        <h3 id="modalTitle">Add Blog</h3>
+        <form id="modalForm">
+          <input type="hidden" id="editIndex" /><label>Blog Image URL</label >
+          <label>Blog Image<input type="file" id="blog-image" accept="image/*" /></label>
+          <label>Title</label
+          ><input type="text" id="blogTitle" required /><label
+            >Short Description</label
+          ><input type="text" id="blogShort" /><label>Category</label
+          ><input
+            type="text"
+            id="blogCategory"
+            placeholder="e.g. Programs"
+          /><label>Blog Content</label
+          ><textarea id="blogContent" rows="6" required></textarea>
+          <div class="actions">
+            <button type="button" onclick="closeModal()" class="btn">
+              Close</button
+            ><button class="btn red" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="modalMail" class="modal">
+      <div class="box">
+        <h3 id="modalMailTitle">Add Mail Contact</h3>
+        <form id="mailForm">
+          <input type="hidden" id="mailEditIndex" /><label>Name</label
+          ><input id="mailName" required /><label>Email</label
+          ><input id="mailEmail" required /><label>Message</label
+          ><textarea id="mailMsg"></textarea>
+          <div class="actions">
+            <button type="button" onclick="closeMailModal()" class="btn">
+              Close</button
+            ><button class="btn red" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="modalAdmission" class="modal">
+      <div class="box">
+        <h3 id="modalAdmissionTitle">Add Admission Contact</h3>
+        <form id="admissionForm">
+          <input type="hidden" id="admissionEditIndex" /><label>Name</label
+          ><input id="adName" required /><label>Phone</label
+          ><input id="adPhone" required /><label>Class</label
+          ><input id="adClass" />
+          <div class="actions">
+            <button type="button" onclick="closeAdmissionModal()" class="btn">
+              Close</button
+            ><button class="btn red" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+     <footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>Get In Touch</h3>
+      <p>📍 No. 204/206, Attibele Road, ...</p>
+      <p>📍 Plot No.20, Door Mo.2-724, ...</p>
+      <p>📞 07708099799</p>
+      <p>📧 timekidsmathigiri@gmail.com</p>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Our Programs</a></li>
+        <li><a href="#">Our Curriculum</a></li>
+        <li><a href="#">Our Media</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Photo Gallery</h3>
+      <div class="gallery">
+        <img src="logo.png" alt="" />
+        <img src="kid2.jpg" alt="" />
+        <img src="kid3.jpg" alt="" />
+        <!-- more -->
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:20px; text-align:center;">© Time Kids, All Right Reserved.</p>
+</footer>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

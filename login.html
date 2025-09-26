@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+   <div class="header-bar">
+    <div class="logo"><img src="logo.png" alt="logo"></div>
+    <nav class="nav-main">
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Programs</a></li>
+        <li><a href="#">Curriculum</a></li>
+        <li><a href="#">Media</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="login.html" class="contact">Admin</a></li>
+      </ul>
+    </nav>
+  </div>
+  <main style="padding:40px;display:flex;justify-content:center">
+    <div class="login-container">
+      <h3 style="text-align:center;color:#d32f2f">Admin Login</h3>
+      <form id="loginForm">
+        <input id="username" placeholder="Email" type="text" required style="margin-top:8px;padding:10px;width:100%">
+        <input id="password" placeholder="Password" type="password" required
+          style="margin-top:8px;padding:10px;width:100%">
+        <div class="form-check">
+          <input type="checkbox" id="showPassword"> Show password
+        </div>
+        <div style="margin-top:12px;text-align:center">
+          <button class="btn" type="submit">Submit</button>
+           <p class="hint">Demo credentials: <b>timekidshosur01@gmail.com</b> <b>1234</b></p>
+        </div>
+        <p id="err" style="color:#d32f2f;text-align:center"></p>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>Get In Touch</h3>
+      <p>📍 No. 204/206, Attibele Road, ...</p>
+      <p>📍 Plot No.20, Door Mo.2-724, ...</p>
+      <p>📞 07708099799</p>
+      <p>📧 timekidsmathigiri@gmail.com</p>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Our Programs</a></li>
+        <li><a href="#">Our Curriculum</a></li>
+        <li><a href="#">Our Media</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Photo Gallery</h3>
+      <div class="gallery">
+        <img src="logo.png" alt="" />
+        <img src="kid2.jpg" alt="" />
+        <img src="kid3.jpg" alt="" />
+        <!-- more -->
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:20px; text-align:center;">© Time Kids, All Right Reserved.</p>
+</footer>
+
+  <script>
+    // login check
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const u = document.getElementById('username').value;
+      const p = document.getElementById('password').value;
+      if ((u === 'admin' || u === 'timekidshosur01@gmail.com') && p === '1234') {
+        localStorage.setItem('loggedIn', 'true');
+        window.location.href = 'dashboard.html';
+      } else {
+        document.getElementById('err').innerText = 'Invalid credentials';
+      }
+    });
+
+    // toggle show password
+    document.getElementById('showPassword').addEventListener('change', function () {
+      const passField = document.getElementById('password');
+      passField.type = this.checked ? 'text' : 'password';
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Blog Detail</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="header-bar">
+    <div class="logo"><img src="logo.png" alt="logo"></div>
+    <nav class="nav-main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html">Blog</a></li>
+      </ul>
+    </nav>
+  </div>
+  <main style="padding:30px 20px">
+    <div id="blogDetails" class="blog-details"></div>
+  </main>
+   <footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>Get In Touch</h3>
+      <p>📍 No. 204/206, Attibele Road, ...</p>
+      <p>📍 Plot No.20, Door Mo.2-724, ...</p>
+      <p>📞 07708099799</p>
+      <p>📧 timekidsmathigiri@gmail.com</p>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Our Programs</a></li>
+        <li><a href="#">Our Curriculum</a></li>
+        <li><a href="#">Our Media</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Photo Gallery</h3>
+      <div class="gallery">
+        <img src="logo.png" alt="" />
+        <img src="kid2.jpg" alt="" />
+        <img src="kid3.jpg" alt="" />
+        <!-- more -->
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:20px; text-align:center;">© Time Kids, All Right Reserved.</p>
+</footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const id = localStorage.getItem('selectedBlogId');
+      const blogs = JSON.parse(localStorage.getItem('blogs') || '[]');
+      const blog = blogs.find(b => String(b.id) === String(id));
+      const out = document.getElementById('blogDetails');
+      if (!blog) { out.innerHTML = '<p>Blog not found</p>'; return; }
+      out.innerHTML = `<h2>${blog.title}</h2>
+      <p><strong>Category:</strong> ${blog.category || 'General'}
+        </p><img src="${blog.image}" style="max-width:100%;border-radius:8px;margin-top:10px">
+        <div style="margin-top:14px">${blog.content.replace(/\n/g, '<br>')}
+          </div><p style="margin-top:12px"><a href="index.html">← Back to Blogs</a></p>`;
+    });
+  </script>
+</body>
+
+</html>
